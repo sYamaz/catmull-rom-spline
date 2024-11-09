@@ -1,0 +1,25 @@
+{
+  "name": "@syamaz/catmull-rom-spline",
+  "version": "0.0.1",
+  "author": "Shun Yamazaki",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": true,
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@types/node": "^22.8.6",
+    "eslint": "^9.14.0",
+    "globals": "^15.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.12.2"
+  },
+  "scripts": {
+    "build": "tsc -d -p .",
+    "build:live": "yarn build --watch"
+  }
+}
