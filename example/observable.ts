@@ -1,6 +1,6 @@
-import {convertToSimplePoint} from "../src/catmull-rom-spline"
-import {IPoint2D, interporate, } from "../src/abstract/basic-catmull-rom-spline"
+import {IPoint2D, Simple2DCatmullRomSpline} from "../src/index"
 
+const spline = new Simple2DCatmullRomSpline()
 export interface IObserver<T> {
     next(value:T):void
     error(err:unknown):void
@@ -47,7 +47,7 @@ export class InterporateSubject implements IObservable<IPoint2D[]>, IObserver<IP
             case 3: return
             case 4:
                 
-                arr.push(this.points[0], this.points[1], ...interporate(
+                arr.push(this.points[0], this.points[1], ...spline.interpolate(
                     this.points[0], 
                     this.points[1], 
                     this.points[2], 
@@ -66,7 +66,7 @@ export class InterporateSubject implements IObservable<IPoint2D[]>, IObserver<IP
                 //
                 // if count === i
                 // p(i-4), p(i-3), .....,
-                arr.push(...interporate(
+                arr.push(...spline.interpolate(
                     this.points[0], 
                     this.points[1], 
                     this.points[2], 
@@ -101,10 +101,10 @@ subject.subscribe(ps =>  {
     console.log(ps)
 })
 
-subject.next(convertToSimplePoint(1, 1))
-subject.next(convertToSimplePoint(2, 6))
-subject.next(convertToSimplePoint(3, 3))
-subject.next(convertToSimplePoint(4, 3.5))
-subject.next(convertToSimplePoint(5, 10))
-subject.next(convertToSimplePoint(6, 11))
+subject.next({x:1, y:1})
+subject.next({x:2, y:6})
+subject.next({x:3, y:3})
+subject.next({x:4, y:3.5})
+subject.next({x:5, y:10})
+subject.next({x:6, y:11})
 subject.complete()

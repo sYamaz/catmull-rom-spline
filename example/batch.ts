@@ -1,9 +1,9 @@
-import {Simple2DCatmullRomSpline, IPoint2D} from '../dist/catmull-rom-spline'
-
-const spline = new Simple2DCatmullRomSpline()
-
+import {Simple2DCatmullRomSpline, IPoint2D} from '../src/index'
 
 const batchExecute = (samples: IPoint2D[], interporatePoints: number, alpha: number) => {
+
+    const spline = new Simple2DCatmullRomSpline()
+
     const len = samples.length
     if (samples.length < 4) {
         return samples

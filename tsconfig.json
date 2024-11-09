@@ -5,7 +5,7 @@
     "lib": ["es2020", "dom"],
     "jsx": "react",
     "sourceMap": true,
-    "outDir": "../dist",
+    "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
