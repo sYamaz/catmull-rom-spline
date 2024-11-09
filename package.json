@@ -1,6 +1,6 @@
 {
   "name": "@syamaz/catmull-rom-spline",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Shun Yamazaki",
   "license": "MIT",
   "files": [
