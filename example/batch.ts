@@ -1,4 +1,4 @@
-import {Simple2DCatmullRomSpline, IPoint2D, BatchRunner} from '../dist/index'
+import {Simple2DCatmullRomSpline, IPoint2D, BatchInterpolator} from '../dist/index'
 
 
 const points:IPoint2D[] = [
@@ -10,5 +10,5 @@ const points:IPoint2D[] = [
     {x:6, y:11},
 ]
 
-const runner = new BatchRunner(new Simple2DCatmullRomSpline(), 0.5, 5)
-console.log(runner.run(points))
+const runner = new BatchInterpolator(new Simple2DCatmullRomSpline(), 0.5, 5)
+console.log(runner.interpolate(points))

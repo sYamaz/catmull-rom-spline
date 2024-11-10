@@ -1,10 +1,17 @@
 import type { ICatmullRomSpline } from "../index";
 
-
-export class BatchRunner<TPoint> {
+/**
+ * ４点以上の点について一括でCatmull-rom spline補間を適用するためのクラス
+ */
+export class BatchInterpolator<TPoint> {
     constructor(private readonly spline: ICatmullRomSpline<TPoint>, private readonly alpha: number, private readonly points: number) { }
 
-    run = (samples: TPoint[]) => {
+    /**
+     * 任意の点数に対して補間を行います。
+     * @param samples 
+     * @returns 
+     */
+    interpolate = (samples: TPoint[]) => {
         const len = samples.length
         if (samples.length < 4) {
             return samples
