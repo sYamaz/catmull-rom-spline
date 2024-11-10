@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.2...v1.0.3) (2024-11-10)
+
+
+### Bug Fixes
+
+* add documentation ([ac960ad](https://github.com/sYamaz/catmull-rom-spline/commit/ac960ad5ed5d10c5041bbe9cbd85902bb9feedc5))
+
 ## [1.0.2](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.1...v1.0.2) (2024-11-10)
 
 
