@@ -1,5 +1,9 @@
 # @syamaz/catmull-rom-spline
 
-[Catmull-rom spline (wikipedia)](https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline)のts実装です。
+Catmull-rom splineのts実装です。
 
-現在２次元座標(x,y)のみ対応
+wikipedia: https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline
+
+## usage
+
+see [example.md](./docs/example.md)
