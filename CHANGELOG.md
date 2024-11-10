@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.1...v1.0.2) (2024-11-10)
+
+
+### Bug Fixes
+
+* batch ([#5](https://github.com/sYamaz/catmull-rom-spline/issues/5)) ([925116e](https://github.com/sYamaz/catmull-rom-spline/commit/925116ec9d250e7485dc2d41cbc27ab970371a1c))
+
 ## [1.0.1](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.0...v1.0.1) (2024-11-09)
 
 
