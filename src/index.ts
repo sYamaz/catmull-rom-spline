@@ -1,4 +1,13 @@
 export interface ICatmullRomSpline<T> {
+    /**
+     * 
+     * @param p0 control point 0
+     * @param p1 control point 1
+     * @param p2 control point 2
+     * @param p3 control point 3
+     * @param alpha tension parameter（range: 0.0 ~ 1.0)
+     * @param points desired curve points
+     */
     interpolate(p0: T, p1: T, p2:T, p3:T, alpha: number, points: number): T[]
 }
 
