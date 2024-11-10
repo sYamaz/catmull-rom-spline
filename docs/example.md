@@ -1,10 +1,10 @@
-# example
+example
 
-## simple usage
+# simple usage
 
 Performs Catmull-Rom spline interpolation using a predefined class.
 
-2D
+## 2D
 ```ts
 import { Simple2DCatmullRomSpline } from "@syamaz/catmull-rom-spline"
 
@@ -22,7 +22,7 @@ const curvePoints = spline.interpolate(
 console.log(curvePoints)
 ```
 
-3D
+## 3D
 ```ts
 import { Simple3DCatmullRomSpline } from "@syamaz/catmull-rom-spline"
 const spline = new Simple3DCatmullRomSpline()
@@ -39,7 +39,7 @@ const curvePoints = spline.interpolate(
 console.log(curvePoints)
 ```
 
-## use custom point type
+# use custom point type
 
 Extends an abstract class to support custom point types.
 
