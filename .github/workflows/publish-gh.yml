@@ -6,7 +6,7 @@ name: Publish to Github Package
 on:
   release:
     types: [published]
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
