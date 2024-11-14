@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.3...v1.1.0) (2024-11-14)
+
+
+### Features
+
+* add `approximateCubicBezier` function ([#10](https://github.com/sYamaz/catmull-rom-spline/issues/10)) ([6f3ce17](https://github.com/sYamaz/catmull-rom-spline/commit/6f3ce17fb1f268b91adfcaf406b9792f7100c9c4))
+
 ## [1.0.3](https://github.com/sYamaz/catmull-rom-spline/compare/v1.0.2...v1.0.3) (2024-11-10)
 
 
