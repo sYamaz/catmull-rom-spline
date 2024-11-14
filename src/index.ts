@@ -8,7 +8,7 @@ export interface ICatmullRomSpline<T> {
      * @param alpha tension parameter（range: 0.0 ~ 1.0)
      * @param points desired curve points
      */
-    interpolate(p0: T, p1: T, p2:T, p3:T, alpha: number, points: number): T[]
+    interpolate(p0: T, p1: T, p2: T, p3: T, alpha: number, points: number): T[]
 }
 
 export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline<TPoint> {
@@ -17,21 +17,35 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
      * @param pi 点i
      * @param pj 点j
      */
-    protected abstract calcDistance (pi:TPoint, pj:TPoint):number
+    protected abstract calcDistance(pi: TPoint, pj: TPoint): number
     /**
      * 原点を基準に座標を定数倍した座標を生成し、返します
      * @param p 
      * @param mul 
      */
-    protected abstract magnify (p:TPoint, mul:number): TPoint
+    protected abstract magnify(p: TPoint, mul: number): TPoint
     /**
      * ２点を加えた座標を生成し、返します
      * @param pi 
      * @param pj 
      */
-    protected abstract sum(pi:TPoint, pj:TPoint):TPoint
+    protected abstract sum(pi: TPoint, pj: TPoint): TPoint
 
-    protected calcTj = (ti:number, pi:TPoint, pj:TPoint, alpha:number):number => {
+    /**
+     * ２点のベクトルの差を計算します
+     * @param pi 
+     * @param pj 
+     * @returns 
+     */
+    protected sub = (pi: TPoint, pj: TPoint): TPoint => {
+        return this.sum(pi, this.magnify(pj, -1))
+    }
+
+    protected div = (p: TPoint, denominator: number) => {
+        return this.magnify(p, 1 / denominator)
+    }
+
+    protected calcTj = (ti: number, pi: TPoint, pj: TPoint, alpha: number): number => {
         return Math.pow(this.calcDistance(pi, pj), alpha) + ti
     }
 
@@ -40,7 +54,7 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
         const t1 = this.calcTj(t0, p0, p1, alpha)
         const t2 = this.calcTj(t1, p1, p2, alpha)
         const t3 = this.calcTj(t2, p2, p3, alpha)
-    
+
         return [t0, t1, t2, t3]
     }
 
@@ -65,7 +79,26 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
         return sequence;
     }
 
-    public interpolate = (p0: TPoint, p1: TPoint, p2:TPoint, p3:TPoint, alpha: number, points: number): TPoint[] => {
+    public approximateCubicBezier = (p0: TPoint, p1: TPoint, p2: TPoint, p3: TPoint, alpha: number): [q0: TPoint, q1: TPoint, q2: TPoint, q3: TPoint] => {
+        // t0~t3を算出する
+        const [t0, t1, t2, t3] = this.calcTjArray(p0, p1, p2, p3, alpha)
+        const c1 = (t2 - t1) / (t2 - t0)
+        const c2 = (t1 - t0) / (t2 - t0)
+        const d1 = (t3 - t2) / (t3 - t1)
+        const d2 = (t2 - t1) / (t3 - t1)
+
+        const M1 = this.magnify(this.sum(this.div(this.magnify(this.sub(p1, p0), c1), t1 - t0), this.div(this.magnify(this.sub(p2, p1), c2), t2 - t1)), t2 - t1)
+        const M2 = this.magnify(this.sum(this.div(this.magnify(this.sub(p2, p1), d1), t2 - t1), this.div(this.magnify(this.sub(p3, p2), d2), t3 - t2)), t2 - t1)
+
+        const q0 = p1
+        const q1 = this.sum(p1, this.div(M1, 3))
+        const q2 = this.sub(p2, this.div(M2, 3))
+        const q3 = p2
+
+        return [q0, q1, q2, q3]
+    }
+
+    public interpolate = (p0: TPoint, p1: TPoint, p2: TPoint, p3: TPoint, alpha: number, points: number): TPoint[] => {
         // t0~t3を算出する
         const [t0, t1, t2, t3] = this.calcTjArray(p0, p1, p2, p3, alpha)
 
@@ -89,7 +122,7 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
             const a3 = this.sum(this.magnify(p2, t3_t / t3_t2), this.magnify(p3, -t2_t / t3_t2))
             const b1 = this.sum(this.magnify(a1, t2_t / t2_t0), this.magnify(a2, -t0_t / t2_t0))
             const b2 = this.sum(this.magnify(a2, t3_t / t3_t1), this.magnify(a3, -t1_t / t3_t1))
-            const p =  this.sum(this.magnify(b1, t2_t / t2_t1), this.magnify(b2, -t1_t / t2_t1))
+            const p = this.sum(this.magnify(b1, t2_t / t2_t1), this.magnify(b2, -t1_t / t2_t1))
             ret.push(p)
         }
         return ret
@@ -97,19 +130,19 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
 }
 
 export interface IPoint2D {
-    x:number
-    y:number
+    x: number
+    y: number
 }
 
 export class Simple2DCatmullRomSpline extends BasicCatmullRomSpline<IPoint2D> {
-    constructor(){
+    constructor() {
         super()
     }
     protected calcDistance(pi: IPoint2D, pj: IPoint2D): number {
         const dx = pi.x - pj.x
         const dy = pi.y - pj.y
 
-        return Math.sqrt(dx**2 + dy**2)
+        return Math.sqrt(dx ** 2 + dy ** 2)
     }
     protected magnify(p: IPoint2D, mul: number): IPoint2D {
         return {
@@ -127,13 +160,13 @@ export class Simple2DCatmullRomSpline extends BasicCatmullRomSpline<IPoint2D> {
 
 
 export interface IPoint3D {
-    x:number
-    y:number
-    z:number
+    x: number
+    y: number
+    z: number
 }
 
 export class Simple3DCatmullRomSpline extends BasicCatmullRomSpline<IPoint3D> {
-    constructor(){
+    constructor() {
         super()
     }
     protected calcDistance(pi: IPoint3D, pj: IPoint3D): number {
@@ -141,7 +174,7 @@ export class Simple3DCatmullRomSpline extends BasicCatmullRomSpline<IPoint3D> {
         const dy = pi.y - pj.y
         const dz = pi.z - pj.z
 
-        return Math.sqrt(dx**2 + dy**2 + dz**2)
+        return Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2)
     }
     protected magnify(p: IPoint3D, mul: number): IPoint3D {
         return {
