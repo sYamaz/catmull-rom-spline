@@ -1,6 +1,6 @@
 {
   "name": "@syamaz/catmull-rom-spline",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Shun Yamazaki",
   "license": "MIT",
   "files": [
@@ -9,7 +9,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
-    "exports": {
+  "exports": {
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
