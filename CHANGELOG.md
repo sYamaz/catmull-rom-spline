@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.2](https://github.com/sYamaz/catmull-rom-spline/compare/v1.1.1...v1.1.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* export import ([#18](https://github.com/sYamaz/catmull-rom-spline/issues/18)) ([2375bf2](https://github.com/sYamaz/catmull-rom-spline/commit/2375bf2eb0dbf19231054736c3c3c903201c5b54))
+
+
+### Reverts
+
+* "fix ([#15](https://github.com/sYamaz/catmull-rom-spline/issues/15))" ([#16](https://github.com/sYamaz/catmull-rom-spline/issues/16)) ([6d49e83](https://github.com/sYamaz/catmull-rom-spline/commit/6d49e839ea8acc991ac5f67791f13a4535fef65f))
+
 ## [1.1.1](https://github.com/sYamaz/catmull-rom-spline/compare/v1.1.0...v1.1.1) (2026-02-18)
 
 
