@@ -192,4 +192,4 @@ export class Simple3DCatmullRomSpline extends BasicCatmullRomSpline<IPoint3D> {
     }
 }
 
-export * from './usecase/index.js'
+export * from './usecase/index'
