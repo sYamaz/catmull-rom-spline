@@ -1,4 +1,4 @@
-import {BasicCatmullRomSpline, } from "../src/index"
+import {BasicCatmullRomSpline} from "../src/index.js"
 
 interface SamplePoint {
     x:number
