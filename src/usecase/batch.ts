@@ -1,4 +1,4 @@
-import type { ICatmullRomSpline } from "../index.js";
+import type { ICatmullRomSpline } from "../index";
 
 /**
  * ４点以上の点について一括でCatmull-rom spline補間を適用するためのクラス
