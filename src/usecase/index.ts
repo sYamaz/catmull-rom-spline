@@ -1,1 +1,1 @@
-export * from './batch'
+export * from './batch.js'
