@@ -46,7 +46,14 @@ export abstract class BasicCatmullRomSpline<TPoint> implements ICatmullRomSpline
     }
 
     protected calcTj = (ti: number, pi: TPoint, pj: TPoint, alpha: number): number => {
-        return Math.pow(this.calcDistance(pi, pj), alpha) + ti
+        const distance = this.calcDistance(pi, pj)
+    
+        // 距離が0に近い場合は小さな値を使う
+        if (distance < 1e-6) {
+            return ti + 1e-6
+        }
+    
+        return Math.pow(distance, alpha) + ti
     }
 
     protected calcTjArray = (p0: TPoint, p1: TPoint, p2: TPoint, p3: TPoint, alpha: number): [t0: number, t1: number, t2: number, t3: number] => {
