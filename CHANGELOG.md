@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/sYamaz/catmull-rom-spline/compare/v1.1.2...v1.1.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* ゼロ除算の可能性を考慮 ([#19](https://github.com/sYamaz/catmull-rom-spline/issues/19)) ([ac6b8fb](https://github.com/sYamaz/catmull-rom-spline/commit/ac6b8fb7fae866a9106389016cd7687c6833ed13))
+
 ## [1.1.2](https://github.com/sYamaz/catmull-rom-spline/compare/v1.1.1...v1.1.2) (2026-02-18)
 
 
